@@ -2,6 +2,8 @@
 
 Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@slalom.com?subject=[Data%20Science%20VM]).
 
+All passwords are set to `slalom`.
+
 ## What I am getting?
 
 These instructions detail how to provision the `slalomdsvm` virtual machine on your laptop. The VM provides the usual tools for big-data-based data science work.

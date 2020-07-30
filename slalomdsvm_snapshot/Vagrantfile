@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 	config.vm.synced_folder "/vagrant/synchronized", "/synchronized"
 
 	# Disk size
-	config.disksize.size = "50GB"
+	#config.disksize.size = "50GB"
 
 	# Define VM:
 	config.vm.define "slalomdsvm_snapshot" do |slalomdsvm_snapshot|
