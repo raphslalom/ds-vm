@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
 
 	# Vagrant VM name definition
 	config.vm.box = "slalomdsvm"
-	config.vm.box_url = "file:////vagrant/boxes/CentOS-8-Vagrant-8.2.2004-20200611.2.x86_64.vagrant-virtualbox.box"
+	config.vm.box_url = "file:////vagrant/boxes/slalomdsbox.box"
 	#config.vm.box_url = "https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-Vagrant-8.2.2004-20200611.2.x86_64.vagrant-virtualbox.box"
 	
 
