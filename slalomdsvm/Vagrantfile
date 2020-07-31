@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 		slalomdsvm.vm.provider "virtualbox" do |vb|
 			vb.name = "slalomdsvm"
 			vb.cpus = 4
-			vb.memory = 12288
+			vb.memory = 10240
 
 		end
 	end

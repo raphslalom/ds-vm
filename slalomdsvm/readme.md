@@ -4,6 +4,18 @@ Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@slal
 
 All passwords are set to `slalom`.
 
+
+
+
+
+|Component | Description | URL | login |
+|----|----|----|----|
+| Ambari | Manage Hadoop cluster | [http://slalomdsvm:8080/](http://slalomdsvm:8080/) | `admin`:`admin` |
+| Zeppelin | Notebook with support for Scala | http://slalomdsvm:9995/#/ | `admin`:`admin`  |
+
+
+
+
 ## What I am getting?
 
 These instructions detail how to provision the `slalomdsvm` virtual machine on your laptop. The VM provides the usual tools for big-data-based data science work.

@@ -8,24 +8,58 @@ Use these instructions to create a new `slalomdsvm` from scratch.
 
 ## Create `slalomdsvm_snapshot` VM
 
-### Start the VM and login
+### Create the VM
 
 ```bash
 cd slalomdsvm_snapshot
 vagrant up
+```
+
+
+
+### Configure OS and base components
+
+```bash
+mkdir /vagrant/synchronized/yum_cache
 vagrant ssh
 ```
-### Set hostname
 
+```bash
+sudo su -
+
+# set hostname
+hostnamectl set-hostname slalomdsvm
+
+# Disable Linux firewall
+sed 's/SELINUX=enforcing/SELINUX=disabled/' -i /etc/selinux/config
+
+# Set yum cache location to the synced directpry
+# to avoid re-downloading all the packages by keeping them on the laptop
+sed -e '/cachedir/c\cachedir=/synchronized/yum_cache/$basearch/$releasever' -i /etc/yum.conf
+sed -e '/keepcache/c\keepcache=1' -i /etc/yum.conf
+ 
+# Log out of the VM
+logout
+logout
 ```
-sudo hostnamectl set-hostname slalomdsvm
+
+```bash
+vagrant reload
 ```
 
 
 ### Install components
 
 ```bash
+vagrant ssh
+```
+
+
+```bash
 sudo su -
+
+# git
+yum -y install git
 
 # httpd - to verify network
 yum -y install httpd curl wget
@@ -36,30 +70,35 @@ echo "foo" > /var/www/html/foo.html
 service httpd start
 curl localhost/foo.html
 
-
-
 # Python3
 yum -y install python3
 pip3 install pandas matplotlib pyyaml pyjson scipy scikit-learn seaborn
+rm -r ~/.cache/pip/*
+
+# Install mysql connector and open jdk
+yum -y install mysql-connector-java
+java -version
 
 # Ambari
 wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.7.4.0/ambari.repo -O /etc/yum.repos.d/ambari.repo
 yum -y install ambari-agent ambari-server
-
-# Pre-configure Ambari and install java 8
-# Accept all defaults 
-# except for
-# Enable Ambari Server to download and install GPL Licensed LZO packages [y/n] (n)? y
-
-ambari-server setup 
-ln -s /usr/jdk64/jdk1.8.0_112/bin/java /bin/java
-java -version
-
+ambari-server setup --java-home /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/jre --silent --verbose
+ambari-server setup --jdbc-db mysql --jdbc-driver /usr/share/java/mysql-connector-java.jar
 ambari-server start
 ambari-agent start
+# (ambari services will automatically start on vm reboot)
 
 # Jupyter
-.... TO DO !!! 
+#.... TO DO !!! 
+
+# Install R + Rstudio
+#.... TO DO !!! 
+
+# Delete command history and logout of the VM
+history -c
+logout
+history -c
+logout
 ```
 
 
@@ -71,20 +110,26 @@ ambari-agent start
  * Launch the install wizard to deploy the Hadoop cluster:
 	 * Use `slalomdsvm` as the hostname.
 	 * Set all passwords to `slalom`.
+	 * Configure components to minimize memory usage (example: see config downloaded from Ambari for a cluster with a valid configuration).
+
+
+
+### Configure Jupyter
+
+```bash
+vagrant ssh
+```
+
+```bash
+configure Python3 and pyspark kernels.
+```
 
 
 
 
+### R and Rstudio?
+do it if easy
 
-
-### Cleanup
-
-Cleanup the yum cache and command history
-
-
-
-
-CTRL-D to logout of the VM
 
 
 
@@ -93,7 +138,7 @@ CTRL-D to logout of the VM
 
 
 ```bash
-vagrant halt
+# vagrant halt
 vagrant package --base slalomdsvm_snapshot --output /vagrant/boxes/slalomdsbox.box
 ```
 
