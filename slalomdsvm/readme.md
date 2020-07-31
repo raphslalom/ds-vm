@@ -13,7 +13,7 @@ _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@sla
 Execute all the pre-requisites documented in `../readme.md`.
 
 
-### Registering the `slalomds` box  with vagrant
+### Register the `slalomds` box  with vagrant
 
 > Do this step only once when you you create the VM for the first time.
 
@@ -37,7 +37,7 @@ vagrant box add --name slalomds http://...TBD...
 vagrant box list
 ```
 
-### Creating the VM
+### Create the VM
 
 > Do this step every time you create a new vm from the box (ex: if you have detroyed a previous instance of the VM and you need to create a new "fresh VM").
 
@@ -50,7 +50,7 @@ vagrant global-status
 ```
 
 
-### Starting Hadoop
+### Start Hadoop
 
  1. Open you web browser at [http://slalomdsvm:8080/](http://slalomdsvm:8080/)
  2. Login with: `admin`:`admin`
@@ -144,7 +144,7 @@ Files on your laptop under `/vagrant/synchronized` and on the VM under `/synchro
 
 
 
-## Managing the box
+## Managing the base box
 
 To unregister the base box from Vagrant and delete the box file:
 
