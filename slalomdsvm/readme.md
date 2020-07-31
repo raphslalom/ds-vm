@@ -69,7 +69,9 @@ vagrant global-status
  * 10GB RAM
  * 4 CPUs
  * 40GB disk (15GB already used).
- * Hadoop 3 (HDFS, YARN, Map/Reduce), Spark 2, Hive 3.
+ * Hadoop 3 (HDFS, YARN, Map/Reduce), Spark 2, Hive 3
+ * Jupyter, Rstudio, Zeppelin, git
+ * Python 3.6 and pip (`python3` and `pip3`), Java 8
 
 
 
@@ -85,6 +87,50 @@ vagrant global-status
 | YARN | Resource Manager UI | [http://slalomdsvm:8088/ui2/#/cluster-overview](http://slalomdsvm:8088/ui2/#/cluster-overview) | N/A |
 | Spark  | Job History UI | [http://slalomdsvm:18081/](http://slalomdsvm:18081/) | N/A |
 | Map/Reduce  | Job History UI | [http://slalomdsvm:19888/jobhistory](http://slalomdsvm:19888/jobhistory) | N/A |
+
+
+
+### Using Jupyter / Pyspark
+
+1. Ssh into the VM (see section `Managing the VM` below).
+
+2. To start the notebook server, run:
+
+  ```bash
+  jupyter notebook
+  ```
+  
+3.  Open Jupyter in you web browser at [http://slalomdsvm:8888/](http://slalomdsvm:8888/).
+
+4.  Open an existing Python3 notebook or create a new one (click `New` > `Python3`).
+
+5. Edit your notebook, to use pyspark, use this code in your notebook:
+
+  ```python
+  import findspark
+  findspark.init()
+
+  # Create a spark-session (akin to what pyspark provides when it is started)
+  from pyspark.sql import SparkSession
+  spark = SparkSession.builder.getOrCreate()
+  spark
+  spark.stop()
+  
+  # OR
+  # Create a spark context
+  import pyspark
+  sc = pyspark.SparkContext()
+  sc
+  sc.stop()
+  ```
+  
+  ![jupyter-pyspark](./jupyter-pyspark.png)
+  
+
+6. Save your notebook and halt the kernel, (feel free to use git on the VM to commit your notebook to a repo).
+
+7. Use CTRL-C to shutdown the notebook server when you are done.
+
 
 
 
