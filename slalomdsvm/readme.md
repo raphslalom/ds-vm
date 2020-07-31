@@ -17,6 +17,7 @@ Execute all the pre-requisites documented in `../readme.md`.
 
 > Do this step only once when you you create the VM for the first time.
 
+
 ```bash
 # [users and developers]
 vagrant box list
@@ -24,6 +25,8 @@ vagrant box list
 # [users only]
 # Download the box and register it with vagrant
 # Do this overnight, the box is ≈10GB, this will take a while.
+# IMPORTANT: 
+# Make sure your laptop is plugged-in and configured to not go to sleep.
 vagrant box add --name slalomds http://...TBD...
 
 # [developers only]
@@ -52,7 +55,7 @@ vagrant global-status
  1. Open you web browser at [http://slalomdsvm:8080/](http://slalomdsvm:8080/)
  2. Login with: `admin`:`admin`
  3. Click on the `...` near `Services`, then `Start all`. (If `Start all` is grey out, wait 1 minute, then reload the page and retry. This can happen if the VM was just started while Ambari services are still initializing).
- 4. Wait for all services to be started.
+ 4. Wait for all services to be started, this will take 5-6 minutes (you can see the operation progres in the pop up with the progress bars).
 
 ![ambari-startall](./ambari-startall.png)
  
@@ -93,7 +96,7 @@ All VM managment operations must be conducted from the VM  directory (it contain
 cd ~/repositories/ds-vm/slalomds
 ```
 
-To resume /suspend the VM:
+To resume /suspend the VM (use this when you are done using the VM):
 
 ```bash
 vagrant resume
@@ -101,7 +104,7 @@ vagrant suspend
 ```
 
 
-To boot / shutdown the VM:
+To boot / shutdown the VM (you will need to restart Hadoop via Ambari when you restart the VM):
 
 ```bash
 vagrant up
@@ -126,9 +129,37 @@ vagrant status
 vagrant global-status --prune
 ```
 
+To destroy the VM (will delete all data on the VM, the data in the synced directory will be preserved on your laptop).
+
+```bash
+vagrant destroy
+```
 
 
 
 ### Sharing files between your laptop and the virtual machine
 
 Files on your laptop under `/vagrant/synchronized` and on the VM under `/synchronized` will be... synchronized ;) . These locations act as a "tunnel" to move files between the 2 hosts.
+
+
+
+
+## Managing the box
+
+To unregister the base box from Vagrant and delete the box file:
+
+```bash
+# WARNING: This will delete the box file (≈10GB)!
+# You will have to re-download the box if you want to re-use it!
+# Use this only if you know what you are doing / in case of emergency.
+vagrant box remove slalomds
+```
+
+
+To register the `slalomds` base box with Vagrant:
+
+```bash
+# This will download the box (≈10GB)
+# Overnight download is advised
+vagrant box add --name slalomds http://...TBD...
+```
