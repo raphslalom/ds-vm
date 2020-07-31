@@ -2,17 +2,15 @@
 
 Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@slalom.com?subject=[Data%20Science%20VM]).
 
-All passwords are set to `slalom`.
-
-
-
-
 
 |Component | Description | URL | login |
 |----|----|----|----|
 | Ambari | Manage Hadoop cluster | [http://slalomdsvm:8080/](http://slalomdsvm:8080/) | `admin`:`admin` |
-| Zeppelin | Notebook with support for Scala | http://slalomdsvm:9995/#/ | `admin`:`admin`  |
+| Zeppelin | Notebook with support for Scala | [http://slalomdsvm:9995/](http://slalomdsvm:9995/) | `admin`:`admin`  |
+|Jupyter| Python3 and PySpark notebooks | [http://slalomdsvm:8888/](http://slalomdsvm:8888/) | N/A |
+| Rsudio | R notebooks | [http://slalomdsvm:8787/](http://slalomdsvm:8787/) | `vagrant`:`datascience`|
 
+All passwords are set to `slalom`.
 
 
 

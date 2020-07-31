@@ -1,8 +1,7 @@
-# Create Slalom Data Science Virtual Machine
-
+# Creating a Data Science Vagrant Box
 _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@slalom.com?subject=[Data%20Science%20VM])_
 
-Use these instructions to create a new `slalomdsvm` from scratch.
+Use these instructions to create a new `slalomdsbox` box from scratch.
 
 
 
@@ -27,8 +26,17 @@ vagrant ssh
 ```bash
 sudo su -
 
+# Create a password for user vagrant
+# Use 'datascience' for the password
+passwd vagrant
+
 # set hostname
 hostnamectl set-hostname slalomdsvm
+
+# set timezone for correct date/time
+# timedatectl list-timezones
+timedatectl set-timezone America/Los_Angeles
+date
 
 # Disable Linux firewall
 sed 's/SELINUX=enforcing/SELINUX=disabled/' -i /etc/selinux/config
@@ -58,11 +66,15 @@ vagrant ssh
 ```bash
 sudo su -
 
-# git
-yum -y install git
+#  Get repos
+wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.7.4.0/ambari.repo -O /etc/yum.repos.d/ambari.repo
+yum -y install epel-release
+
+# Install packages (and java via mysql-connector)
+yum -y install ambari-agent ambari-server git curl wget httpd mysql-connector-java python3 R
+java -version
 
 # httpd - to verify network
-yum -y install httpd curl wget
 firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https
 firewall-cmd --reload
@@ -70,35 +82,35 @@ echo "foo" > /var/www/html/foo.html
 service httpd start
 curl localhost/foo.html
 
-# Python3
-yum -y install python3
-pip3 install pandas matplotlib pyyaml pyjson scipy scikit-learn seaborn
+# Python3 packages and Jupyter
+pip3 install --upgrade pip
+pip3 install jupyter findspark pandas matplotlib pyyaml pyjson scipy scikit-learn seaborn
 rm -r ~/.cache/pip/*
 
-# Install mysql connector and open jdk
-yum -y install mysql-connector-java
-java -version
-
 # Ambari
-wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.7.4.0/ambari.repo -O /etc/yum.repos.d/ambari.repo
-yum -y install ambari-agent ambari-server
 ambari-server setup --java-home /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/jre --silent --verbose
 ambari-server setup --jdbc-db mysql --jdbc-driver /usr/share/java/mysql-connector-java.jar
+```
+
+Edit `/var/lib/ambari-server` to set the JVM size options in `AMBARI_JVM_ARGS `:
+
+```
+export AMBARI_JVM_ARGS="$AMBARI_JVM_ARGS -Xms256m -Xmx512m -XX:MaxPermSize=128m ...
+```
+
+
+
+```bash
 ambari-server start
 ambari-agent start
 # (ambari services will automatically start on vm reboot)
 
-# Jupyter
-#.... TO DO !!! 
-
-# Install R + Rstudio
-#.... TO DO !!! 
-
-# Delete command history and logout of the VM
-history -c
-logout
-history -c
-logout
+# Rstudio
+wget https://download2.rstudio.org/rstudio-server-rhel-1.1.453-x86_64.rpm
+yum -y install rstudio-server-rhel-1.1.453-x86_64.rpm
+rm -f rstudio-server-rhel-1.1.453-x86_64.rpm
+yum -y groupinstall "Development Tools"
+service rstudio-server status
 ```
 
 
@@ -111,6 +123,8 @@ logout
 	 * Use `slalomdsvm` as the hostname.
 	 * Set all passwords to `slalom`.
 	 * Configure components to minimize memory usage (example: see config downloaded from Ambari for a cluster with a valid configuration).
+ * Delete services "Ambari Metrics" and "SmartSense" once the cluster is provisionned.
+ * Restart the cluster
 
 
 
@@ -120,17 +134,67 @@ logout
 vagrant ssh
 ```
 
+Configure network:
+
 ```bash
-configure Python3 and pyspark kernels.
+cd
+
+# Configure Jupyter network settings
+jupyter notebook --generate-config
+sed -e "/#c.NotebookApp.allow_origin/c\c.NotebookApp.allow_origin = '*'" -i /home/vagrant/.jupyter/jupyter_notebook_config.py
+sed -e "/#c.NotebookApp.ip/c\c.NotebookApp.ip = '0.0.0.0'" -i /home/vagrant/.jupyter/jupyter_notebook_config.py
+sed -e "/#c.NotebookApp.token /c\c.NotebookApp.token = ''" -i /home/vagrant/.jupyter/jupyter_notebook_config.py
+```
+
+Configure pyspark kernel. These settings will "disable" the `pyspark` command line interface, instead pyspark is now available via Jupyter. To create a pyspark session in Jupyter:
+
+```bash
+cd 
+echo "export SPARK_HOME=/usr/hdp/current/spark2-client" >> .bashrc
+echo "export PYSPARK_DRIVER_PYTHON=jupyter" >> .bashrc
+echo "export PYSPARK_DRIVER_PYTHON_OPTS=notebook" >> .bashrc
+echo "export PYSPARK_PYTHON=/usr/bin/python3" >> .bashrc
+echo "export PATH=$SPARK_HOME/bin:$PATH" >> .bashrc
+source .bashrc
+```
+
+Start the notebook server
+
+```bash
+jupyer notebook
+```
+
+Then in the notebook:
+
+```python
+import findspark
+findspark.init()
+
+# Create a spark context
+import pyspark
+sc = pyspark.SparkContext()
+sc
+sc.stop()
+
+# OR
+# Create a spark-session (akin to what pyspark provides when it is started)
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.getOrCreate()
+spark
+spark.stop()
 ```
 
 
 
+### Delete command history and logout of the VM
 
-### R and Rstudio?
-do it if easy
-
-
+```bash
+sudo su -
+history -c
+logout
+history -c
+logout
+```
 
 
 
@@ -138,44 +202,10 @@ do it if easy
 
 
 ```bash
-# vagrant halt
+vagrant halt
 vagrant package --base slalomdsvm_snapshot --output /vagrant/boxes/slalomdsbox.box
 ```
 
 To use the VM, look at the instructions in the `slalomdsvm` directory.
 
 
-
-
-
-
-
-
-
-
-
-
-
-## Notes
-### Resize disk
-
-Edit the disk-related section in the Vagrantfile if you want more or less space.
-
-[https://stackoverflow.com/questions/49822594/vagrant-how-to-specify-the-disk-size](https://stackoverflow.com/questions/49822594/vagrant-how-to-specify-the-disk-size), then
-
-```bash
-xfs_growfs /dev/sda1
-```
-
-### Download an Oracle Java JDK 
-
-Download the Java 14 JDK from [https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html](https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html). Make sure to pick the Linux rpm for x64 architectures. 
-
-Move the file to  `/vagrant/synchronized`.
-
-```
-# Java
-#cd /synchronized
-#rpm -ivh jdk-14.0.2_linux-x64_bin.rpm
-#java -version
-```
