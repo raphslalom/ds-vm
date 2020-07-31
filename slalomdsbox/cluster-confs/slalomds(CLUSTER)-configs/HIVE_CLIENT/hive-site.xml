@@ -42,7 +42,7 @@
     
     <property>
       <name>hive.auto.convert.join.noconditionaltask.size</name>
-      <value>429496729</value>
+      <value>572662306</value>
     </property>
     
     <property>
@@ -757,7 +757,7 @@
     
     <property>
       <name>hive.tez.container.size</name>
-      <value>1536</value>
+      <value>2048</value>
     </property>
     
     <property>

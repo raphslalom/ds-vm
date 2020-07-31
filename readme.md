@@ -1,18 +1,28 @@
 # Slalom Data Science Virtual Machine
 
-Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@slalom.com?subject=[Data%20Science%20VM]).
+_Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@slalom.com?subject=[Data%20Science%20VM])._
 
 
-This repo provides resources to re-use an existing VM (user) or create a new one from scratch (developer).
 
-* Users and developers must complete all the pre-requisites listed below.
-* Once the pre-requisites are completed:
-  * Users will find futher instructions in the directory `slalomdsvm`
-  * Developers will find futher instructions in the directory `slalomdsvm-snapshot`
+
+## Abstract
+
+This repository provides instructions to:
+
+ * Provision a data science VM from an existing `slalomds` box (you are a _user_ ).
+ * Create a new box from scratch (you are a _developer_).
+
+_Users_ and _developers_ must complete all the common pre-requisites listed below and then follow an additional set instructions provided:
+
+  * In the `slalomdsvm` directory if you are a _user_.
+  * In the `slalomdsbox` directory if you are a box _developer_.
+
+
 
 
 ## Pre-requisites
 ### System requirements
+Check that your system meets the following requirements:
 
  * Mac OS X 10.14
  * 16GB RAM
@@ -20,7 +30,7 @@ This repo provides resources to re-use an existing VM (user) or create a new one
  * 100GB disk
 
 
-### brew
+### Install `brew`
 
 Check that Brew is installed, if not install it, see: [https://brew.sh](https://brew.sh).
 
@@ -31,7 +41,7 @@ brew -v
 ```
 
 
-### git
+### Install `git`
 
 ```bash
 brew install git
@@ -42,7 +52,7 @@ git --version
 
 
 
-### Virtual Box
+### Install Virtual Box
 
  1. Download the VB installer from this direct link: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg), (home page: [https://www.virtualbox.org/wiki/Download](https://www.virtualbox.org/wiki/Download)).
  1. Double click on the dmg file.
@@ -53,7 +63,7 @@ git --version
 
 
 
-### vagrant
+### Install `vagrant`
  
  1. Download and run the installer from [https://www.vagrantup.com/downloads](https://www.vagrantup.com/downloads).
  2. Install the Vagrant plugins with these commands:
@@ -87,7 +97,7 @@ sudo echo "192.168.33.10 slalomdsvm" > /etc/hosts
 ```
 
 
-### Clone the repo
+### Clone this repo
 
 ```bash
 cd

@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-	# Define base VM
+	# Define the base box to use
 	config.vm.box = "centos/7"	
 
 	# Sync local home dir to /vagrant on the VM
@@ -13,8 +13,8 @@ Vagrant.configure("2") do |config|
 	# Define VM:
 	config.vm.define "slalomdsvm_snapshot" do |slalomdsvm_snapshot|
 
-		# Do not change the key for the snapshot, it will be changed the first time
-		# the exported boxis used
+		# Do not change the key for the snapshot,
+		# it will be changed the first time the exported box is used
 		slalomdsvm_snapshot.ssh.insert_key = false
 
 		slalomdsvm_snapshot.vm.network "private_network", ip: "192.168.33.10"
@@ -23,7 +23,6 @@ Vagrant.configure("2") do |config|
 			vb.name = "slalomdsvm_snapshot"
 			vb.cpus = 4
 			vb.memory = 10240
-
 		end
 	end
 end

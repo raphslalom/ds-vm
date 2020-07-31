@@ -1,8 +1,13 @@
 Vagrant.configure("2") do |config|
 
-	# Vagrant VM name definition
-	config.vm.box = "slalomdsvm"
-	config.vm.box_url = "file:////vagrant/boxes/slalomdsbox.box"
+	# Define the base box to use
+	# Use a box registered in the vagrant catalog
+	config.vm.box = "slalomds"
+
+	# Skip vagrant add box and add box from file directly
+	#config.vm.box_url = "file:////vagrant/boxes/slalomds.box"
+
+	# Skip vagrant add box and add box from url directly
 	#config.vm.box_url = "https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-Vagrant-8.2.2004-20200611.2.x86_64.vagrant-virtualbox.box"
 	
 
@@ -11,7 +16,7 @@ Vagrant.configure("2") do |config|
 	config.vm.synced_folder "/vagrant/synchronized", "/synchronized"
 
 	# Disk size
-	config.disksize.size = "50GB"
+	#config.disksize.size = "50GB"
 
 	# Define VM:
 	config.vm.define "slalomdsvm" do |slalomdsvm|
@@ -20,7 +25,6 @@ Vagrant.configure("2") do |config|
 			vb.name = "slalomdsvm"
 			vb.cpus = 4
 			vb.memory = 10240
-
 		end
 	end
 end

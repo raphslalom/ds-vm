@@ -1,8 +1,16 @@
-# Creating a Data Science Vagrant Box
+# Creating a data science Vagrant box
+
 _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@slalom.com?subject=[Data%20Science%20VM])_
 
-Use these instructions to create a new `slalomdsbox` box from scratch.
 
+## Abstract
+
+Use these instructions explain how the `slalomds` box file was created from scratch. They can be re-used/modified to create your own box.
+
+
+## Pre-requisites
+
+Execute all the pre-requisites documented in `../readme.md`.
 
 
 ## Create `slalomdsvm_snapshot` VM
@@ -10,10 +18,9 @@ Use these instructions to create a new `slalomdsbox` box from scratch.
 ### Create the VM
 
 ```bash
-cd slalomdsvm_snapshot
+cd slalomdsbox
 vagrant up
 ```
-
 
 
 ### Configure OS and base components
@@ -186,12 +193,24 @@ spark.stop()
 
 
 
-### Delete command history and logout of the VM
+### Cleanup and logout
+
+Stop all cluster services from Ambari.
 
 ```bash
+# Cleanup with root
 sudo su -
+ambari-server stop
+ambari-agent stop
+rm -rf /tmp/*
+rm -f .bash_history
 history -c
 logout
+
+# Cleanup for user vagrant
+cd
+rm -rf R
+rm -f .bash_history
 history -c
 logout
 ```
@@ -203,9 +222,9 @@ logout
 
 ```bash
 vagrant halt
-vagrant package --base slalomdsvm_snapshot --output /vagrant/boxes/slalomdsbox.box
+vagrant package --base slalomdsvm_snapshot --output /vagrant/boxes/slalomds.box
 ```
 
-To use the VM, look at the instructions in the `slalomdsvm` directory.
+Upload the box to ...TBD...
 
-
+To use the VM, follow the instructions in the `slalomdsvm` directory.

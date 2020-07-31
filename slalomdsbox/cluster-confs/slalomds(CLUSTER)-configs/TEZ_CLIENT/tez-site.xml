@@ -192,7 +192,7 @@
     
     <property>
       <name>tez.runtime.unordered.output.buffer.size-mb</name>
-      <value>115</value>
+      <value>153</value>
     </property>
     
     <property>
@@ -257,7 +257,7 @@
     
     <property>
       <name>tez.task.resource.memory.mb</name>
-      <value>1536</value>
+      <value>2048</value>
     </property>
     
     <property>
