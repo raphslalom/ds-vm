@@ -145,8 +145,6 @@ Configure network:
 
 ```bash
 cd
-
-# Configure Jupyter network settings
 jupyter notebook --generate-config
 sed -e "/#c.NotebookApp.allow_origin/c\c.NotebookApp.allow_origin = '*'" -i /home/vagrant/.jupyter/jupyter_notebook_config.py
 sed -e "/#c.NotebookApp.ip/c\c.NotebookApp.ip = '0.0.0.0'" -i /home/vagrant/.jupyter/jupyter_notebook_config.py
@@ -168,7 +166,7 @@ source .bashrc
 Start the notebook server
 
 ```bash
-jupyer notebook
+jupyter notebook
 ```
 
 Then in the notebook:
