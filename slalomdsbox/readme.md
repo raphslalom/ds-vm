@@ -5,7 +5,7 @@ _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@sla
 
 ## Abstract
 
-Use these instructions explain how the `slalomds` box file was created from scratch. They can be re-used/modified to create your own box.
+This page provides the steps executed  to create the `slalomds` box (from an "empty" Centos 7.8 box). They can be re-used/modified to create your own box.
 
 
 ## Pre-requisites
