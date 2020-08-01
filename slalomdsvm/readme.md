@@ -138,6 +138,8 @@ vagrant global-status
 
 All VM managment operations must be conducted from the VM  directory (it contains the `Vagrantfile`).
 
+The VM will be automatically suspended if your laptop is closed, in this case you will need to run `vagrant up` to resume the VM, see below for details.
+
 ```bash
 cd ~/repositories/ds-vm/slalomds
 ```
