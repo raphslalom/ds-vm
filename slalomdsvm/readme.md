@@ -188,6 +188,24 @@ vagrant destroy
 Files on your laptop under `/vagrant/synchronized` and on the VM under `/synchronized` will be... synchronized ;) . These locations act as a "tunnel" to move files between the 2 hosts.
 
 
+## Managing Hadoop / Ambari
+
+The Hadoop cluster is managed via Ambari (web UI). You will typically use Ambari to stop / start the Hadoop services as described in the `Start Hadoop` section.
+
+Ambari services can be started and stopped easily:
+
+```bash
+vagrant ssh
+```
+
+```bash
+sudo su -
+ambari-server status / start / stop / restart
+ambari-agent status / start / stop / restart
+```
+
+After a reboot of any Ambari service, the agent needs to register with the server before Ambari can be used to run cluster operations, this takes about a minute.
+
 
 
 ## Managing the base box
