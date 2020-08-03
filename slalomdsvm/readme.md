@@ -71,7 +71,7 @@ vagrant global-status
 
  * Centos 7
  * 10GB RAM
- * 4 CPUs
+ * 6 CPUs
  * 40GB disk (15GB already used).
  * Hadoop 3 (HDFS, YARN, Map/Reduce), Spark 2, Hive 3
  * Jupyter, Rstudio, Zeppelin, git
