@@ -224,6 +224,6 @@ vagrant halt
 vagrant package --base slalomdsvm_snapshot --output /vagrant/boxes/slalomds.box
 ```
 
-Upload the box to ...TBD...
+Upload the box to **...TBD...**
 
 To use the VM, follow the instructions in the `slalomdsvm` directory.

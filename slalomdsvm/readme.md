@@ -22,6 +22,10 @@ Execute all the pre-requisites documented in `../readme.md`.
 # [users and developers]
 vagrant box list
 
+# If needed use a new version of the box
+# WARNING: you will need to re-download the box if you do this.
+# vagrant box remove slalomds   # DANGER ZONE
+
 # [users only]
 # Download the box and register it with vagrant
 # Do this overnight, the box is ≈10GB, this will take a while.
@@ -120,6 +124,7 @@ A dataset containing observations of the earth's surface temperature since 1743 
   from pyspark.sql import SparkSession
   spark = SparkSession.builder.getOrCreate()
   spark
+  ...
   spark.stop()
   
   # OR
@@ -127,6 +132,7 @@ A dataset containing observations of the earth's surface temperature since 1743 
   import pyspark
   sc = pyspark.SparkContext()
   sc
+  ...
   sc.stop()
   ```
   
@@ -220,10 +226,10 @@ vagrant status
 vagrant global-status --prune
 ```
 
-To destroy the VM (will delete all data on the VM, the data in the synced directory will be preserved on your laptop).
+To destroy the VM (will delete all data on the VM, the data in the synced directory will be preserved on your laptop). Make sure to be in the directory for the correct VM.
 
 ```bash
-vagrant destroy
+vagrant destroy   # DANGER ZONE
 ```
 
 
@@ -261,7 +267,7 @@ To unregister the base box from Vagrant and delete the box file:
 # WARNING: This will delete the box file (≈10GB)!
 # You will have to re-download the box if you want to re-use it!
 # Use this only if you know what you are doing / in case of emergency.
-vagrant box remove slalomds
+vagrant box remove slalomds   # DANGER ZONE
 ```
 
 

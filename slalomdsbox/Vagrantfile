@@ -13,8 +13,8 @@ Vagrant.configure("2") do |config|
 	# Define VM:
 	config.vm.define "slalomdsvm_snapshot" do |slalomdsvm_snapshot|
 
-		# Do not change the key for the snapshot,
-		# it will be changed the first time the exported box is used
+		# Do not change the ssh key 
+		# Makes it easier to package and share the box
 		slalomdsvm_snapshot.ssh.insert_key = false
 
 		slalomdsvm_snapshot.vm.network "private_network", ip: "192.168.33.10"
