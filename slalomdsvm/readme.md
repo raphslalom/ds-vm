@@ -150,11 +150,7 @@ Hive is tabular datastore built to work on top of Hadoop. It is made to run "lon
 
 To use Hive:
 
- 1. Ssh into the VM:
-
- ```bash
- ssh vagrant
- ```
+ 1. Ssh into the VM (see section `Managing the VM` below).
  
  2. Launch Hive:
 
@@ -245,15 +241,15 @@ The Hadoop cluster is managed via Ambari (web UI). You will typically use Ambari
 
 Ambari services can be started and stopped easily:
 
-```bash
-vagrant ssh
-```
+1. Ssh into the VM (see section `Managing the VM` below).
 
-```bash
-sudo su -
-ambari-server status / start / stop / restart
-ambari-agent status / start / stop / restart
-```
+2. Run the `ambari-...` command which suits your needs:
+
+  ```bash
+  sudo su -
+  ambari-server status / start / stop / restart
+  ambari-agent status / start / stop / restart
+  ```
 
 After a reboot of any Ambari service, the agent needs to register with the server before Ambari can be used to run cluster operations, this takes about a minute.
 
