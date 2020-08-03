@@ -79,6 +79,7 @@ yum -y install epel-release
 
 # Install packages (and java via mysql-connector)
 yum -y install ambari-agent ambari-server git curl wget httpd mysql-connector-java python3 R
+git config --global http.sslVerify false
 java -version
 
 # httpd - to verify network

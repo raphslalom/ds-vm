@@ -2,14 +2,14 @@
 # The heap size of the jvm, and jvm args stared by hive shell script can be controlled via:
 if [ "$SERVICE" = "metastore" ]; then
 
-  export HADOOP_HEAPSIZE=1481 # Setting for HiveMetastore
+  export HADOOP_HEAPSIZE=1536 # Setting for HiveMetastore
   export HADOOP_OPTS="$HADOOP_OPTS -Xloggc:/var/log/hive/hivemetastore-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/hive/hms_heapdump.hprof -Dhive.log.dir=/var/log/hive -Dhive.log.file=hivemetastore.log"
 
 fi
 
 if [ "$SERVICE" = "hiveserver2" ]; then
 
-  export HADOOP_HEAPSIZE=4444 # Setting for HiveServer2 and Client
+  export HADOOP_HEAPSIZE=1536 # Setting for HiveServer2 and Client
   export HADOOP_OPTS="$HADOOP_OPTS -Xloggc:/var/log/hive/hiveserver2-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/hive/hs2_heapdump.hprof -Dhive.log.dir=/var/log/hive -Dhive.log.file=hiveserver2.log"
 
 fi

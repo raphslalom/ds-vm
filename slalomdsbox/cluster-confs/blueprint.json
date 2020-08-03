@@ -390,12 +390,12 @@
                     "yarn.resourcemanager.webapp.address": "%HOSTGROUP::host_group_1%:8088",
                     "yarn.timeline-service.leveldb-timeline-store.ttl-interval-ms": "300000",
                     "yarn.nodemanager.runtime.linux.allowed-runtimes": "default,docker",
-                    "yarn.scheduler.maximum-allocation-vcores": "2",
+                    "yarn.scheduler.maximum-allocation-vcores": "4",
                     "yarn.timeline-service.address": "%HOSTGROUP::host_group_1%:10200",
                     "yarn.timeline-service.enabled": "true",
                     "yarn.timeline-service.http-cross-origin.enabled": "true",
                     "yarn.nodemanager.aux-services": "mapreduce_shuffle,spark2_shuffle,{{timeline_collector}}",
-                    "yarn.nodemanager.resource.cpu-vcores": "2",
+                    "yarn.nodemanager.resource.cpu-vcores": "4",
                     "yarn.system-metricspublisher.enabled": "true",
                     "yarn.webapp.api-service.enable": "true",
                     "yarn.nodemanager.runtime.linux.docker.default-container-network": "host",
@@ -424,7 +424,7 @@
                     "yarn.timeline-service.ttl-enable": "true",
                     "yarn.timeline-service.entity-group-fs-store.retain-seconds": "604800",
                     "yarn.log-aggregation.retain-seconds": "2592000",
-                    "yarn.nodemanager.resource.memory-mb": "2048",
+                    "yarn.nodemanager.resource.memory-mb": "3072",
                     "yarn.nodemanager.disk-health-checker.min-healthy-disks": "0.25",
                     "yarn.node-labels.enabled": "false",
                     "yarn.resourcemanager.connect.max-wait.ms": "900000",
@@ -523,7 +523,7 @@
                     "yarn.nodemanager.runtime.linux.docker.capabilities": "\n      CHOWN,DAC_OVERRIDE,FSETID,FOWNER,MKNOD,NET_RAW,SETGID,SETUID,SETFCAP,\n      SETPCAP,NET_BIND_SERVICE,SYS_CHROOT,KILL,AUDIT_WRITE",
                     "yarn.scheduler.capacity.ordering-policy.priority-utilization.underutilized-preemption.enabled": "true",
                     "yarn.nodemanager.remote-app-log-dir": "/app-logs",
-                    "yarn.scheduler.maximum-allocation-mb": "2048",
+                    "yarn.scheduler.maximum-allocation-mb": "3072",
                     "yarn.nodemanager.vmem-check-enabled": "false",
                     "yarn.timeline-service.entity-group-fs-store.scan-interval-seconds": "60",
                     "yarn.resourcemanager.webapp.https.address": "%HOSTGROUP::host_group_1%:8090",
@@ -566,7 +566,7 @@
                     "spark_daemon_memory": "512",
                     "hive_kerberos_keytab": "{{hive_kerberos_keytab}}",
                     "spark_log_dir": "/var/log/spark2",
-                    "content": "\n#!/usr/bin/env bash\n\n# This file is sourced when running various Spark programs.\n# Copy it as spark-env.sh and edit that to configure Spark for your site.\n\n# Options read in YARN client mode\n#SPARK_EXECUTOR_INSTANCES=\"2\" #Number of workers to start (Default: 2)\n#SPARK_EXECUTOR_CORES=\"1\" #Number of cores for the workers (Default: 1).\n#SPARK_EXECUTOR_MEMORY=\"1G\" #Memory per Worker (e.g. 1000M, 2G) (Default: 1G)\n#SPARK_DRIVER_MEMORY=\"512M\" #Memory for Master (e.g. 1000M, 2G) (Default: 512 Mb)\n#SPARK_YARN_APP_NAME=\"spark\" #The name of your application (Default: Spark)\n#SPARK_YARN_QUEUE=\"default\" #The hadoop queue to use for allocation requests (Default: default)\n#SPARK_YARN_DIST_FILES=\"\" #Comma separated list of files to be distributed with the job.\n#SPARK_YARN_DIST_ARCHIVES=\"\" #Comma separated list of archives to be distributed with the job.\n\n{% if security_enabled %}\nexport SPARK_HISTORY_OPTS='-Dspark.ui.filters=org.apache.hadoop.security.authentication.server.AuthenticationFilter -Dspark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params=\"type=kerberos,kerberos.principal={{spnego_principal}},kerberos.keytab={{spnego_keytab}}\"'\n{% endif %}\n\n\n# Generic options for the daemons used in the standalone deploy mode\n\n# Alternate conf dir. (Default: ${SPARK_HOME}/conf)\nexport SPARK_CONF_DIR=${SPARK_CONF_DIR:-{{spark_home}}/conf}\n\n# Where log files are stored.(Default:${SPARK_HOME}/logs)\n#export SPARK_LOG_DIR=${SPARK_HOME:-{{spark_home}}}/logs\nexport SPARK_LOG_DIR={{spark_log_dir}}\n\n# Where the pid file is stored. (Default: /tmp)\nexport SPARK_PID_DIR={{spark_pid_dir}}\n\n#Memory for Master, Worker and history server (default: 1024MB)\nexport SPARK_DAEMON_MEMORY={{spark_daemon_memory}}m\n\n# A string representing this instance of spark.(Default: $USER)\nSPARK_IDENT_STRING=$USER\n\n# The scheduling priority for daemons. (Default: 0)\nSPARK_NICENESS=0\n\nexport HADOOP_HOME=${HADOOP_HOME:-{{hadoop_home}}}\nexport HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-{{hadoop_conf_dir}}}\n\n# The java implementation to use.\nexport JAVA_HOME={{java_home}}"
+                    "content": "\n#!/usr/bin/env bash\n\n# This file is sourced when running various Spark programs.\n# Copy it as spark-env.sh and edit that to configure Spark for your site.\n\n# Options read in YARN client mode\nSPARK_EXECUTOR_INSTANCES=\"1\" #Number of workers to start (Default: 2)\nSPARK_EXECUTOR_CORES=\"1\" #Number of cores for the workers (Default: 1).\nSPARK_EXECUTOR_MEMORY=\"1G\" #Memory per Worker (e.g. 1000M, 2G) (Default: 1G)\nSPARK_DRIVER_MEMORY=\"512M\" #Memory for Master (e.g. 1000M, 2G) (Default: 512 Mb)\n#SPARK_YARN_APP_NAME=\"spark\" #The name of your application (Default: Spark)\n#SPARK_YARN_QUEUE=\"default\" #The hadoop queue to use for allocation requests (Default: default)\n#SPARK_YARN_DIST_FILES=\"\" #Comma separated list of files to be distributed with the job.\n#SPARK_YARN_DIST_ARCHIVES=\"\" #Comma separated list of archives to be distributed with the job.\n\n{% if security_enabled %}\nexport SPARK_HISTORY_OPTS='-Dspark.ui.filters=org.apache.hadoop.security.authentication.server.AuthenticationFilter -Dspark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params=\"type=kerberos,kerberos.principal={{spnego_principal}},kerberos.keytab={{spnego_keytab}}\"'\n{% endif %}\n\n\n# Generic options for the daemons used in the standalone deploy mode\n\n# Alternate conf dir. (Default: ${SPARK_HOME}/conf)\nexport SPARK_CONF_DIR=${SPARK_CONF_DIR:-{{spark_home}}/conf}\n\n# Where log files are stored.(Default:${SPARK_HOME}/logs)\n#export SPARK_LOG_DIR=${SPARK_HOME:-{{spark_home}}}/logs\nexport SPARK_LOG_DIR={{spark_log_dir}}\n\n# Where the pid file is stored. (Default: /tmp)\nexport SPARK_PID_DIR={{spark_pid_dir}}\n\n#Memory for Master, Worker and history server (default: 1024MB)\nexport SPARK_DAEMON_MEMORY={{spark_daemon_memory}}m\n\n# A string representing this instance of spark.(Default: $USER)\nSPARK_IDENT_STRING=$USER\n\n# The scheduling priority for daemons. (Default: 0)\nSPARK_NICENESS=0\n\nexport HADOOP_HOME=${HADOOP_HOME:-{{hadoop_home}}}\nexport HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-{{hadoop_conf_dir}}}\n\n# The java implementation to use.\nexport JAVA_HOME={{java_home}}"
                 }
             }
         },
@@ -834,7 +834,7 @@
                     "mapreduce.reduce.shuffle.input.buffer.percent": "0.7",
                     "mapreduce.reduce.speculative": "false",
                     "mapreduce.output.fileoutputformat.compress.type": "BLOCK",
-                    "mapreduce.task.io.sort.mb": "1146",
+                    "mapreduce.task.io.sort.mb": "1024",
                     "mapred.local.dir": "/hadoop/mapred",
                     "mapreduce.cluster.administrators": " hadoop",
                     "mapreduce.reduce.shuffle.fetch.retry.timeout-ms": "30000",
@@ -854,9 +854,9 @@
                     "mapreduce.reduce.shuffle.fetch.retry.enabled": "1",
                     "mapreduce.task.io.sort.factor": "100",
                     "mapreduce.jobhistory.recovery.store.leveldb.path": "/hadoop/mapreduce/jhs",
-                    "yarn.app.mapreduce.am.command-opts": "-Xmx1638m -Dhdp.version=${hdp.version}",
+                    "yarn.app.mapreduce.am.command-opts": "-Xmx819m -Dhdp.version=${hdp.version}",
                     "mapreduce.map.java.opts": "-Xmx1638m",
-                    "yarn.app.mapreduce.am.resource.mb": "2048"
+                    "yarn.app.mapreduce.am.resource.mb": "1024"
                 }
             }
         },
@@ -1512,12 +1512,12 @@
                     "hive_user": "hive",
                     "hive_security_authorization": "None",
                     "hive_user_nproc_limit": "16000",
-                    "hive.metastore.heapsize": "1481",
+                    "hive.metastore.heapsize": "1536",
                     "content": "\n# The heap size of the jvm, and jvm args stared by hive shell script can be controlled via:\nif [ \"$SERVICE\" = \"metastore\" ]; then\n\n  export HADOOP_HEAPSIZE={{hive_metastore_heapsize}} # Setting for HiveMetastore\n  export HADOOP_OPTS=\"$HADOOP_OPTS -Xloggc:{{hive_log_dir}}/hivemetastore-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{hive_log_dir}}/hms_heapdump.hprof -Dhive.log.dir={{hive_log_dir}} -Dhive.log.file=hivemetastore.log\"\n\nfi\n\nif [ \"$SERVICE\" = \"hiveserver2\" ]; then\n\n  export HADOOP_HEAPSIZE={{hive_heapsize}} # Setting for HiveServer2 and Client\n  export HADOOP_OPTS=\"$HADOOP_OPTS -Xloggc:{{hive_log_dir}}/hiveserver2-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{hive_log_dir}}/hs2_heapdump.hprof -Dhive.log.dir={{hive_log_dir}} -Dhive.log.file=hiveserver2.log\"\n\nfi\n\n{% if security_enabled %}\nexport HADOOP_OPTS=\"$HADOOP_OPTS -Dzookeeper.sasl.client.username={{zk_principal_user}}\"\n{% endif %}\n\nexport HADOOP_CLIENT_OPTS=\"$HADOOP_CLIENT_OPTS  -Xmx${HADOOP_HEAPSIZE}m\"\nexport HADOOP_CLIENT_OPTS=\"$HADOOP_CLIENT_OPTS{{heap_dump_opts}}\"\n\n# Larger heap size may be required when running queries over large number of files or partitions.\n# By default hive shell scripts use a heap size of 256 (MB).  Larger heap size would also be\n# appropriate for hive server (hwi etc).\n\n\n# Set HADOOP_HOME to point to a specific hadoop install directory\nHADOOP_HOME=${HADOOP_HOME:-{{hadoop_home}}}\n\nexport HIVE_HOME=${HIVE_HOME:-{{hive_home_dir}}}\n\n# Hive Configuration Directory can be controlled by:\nexport HIVE_CONF_DIR=${HIVE_CONF_DIR:-{{hive_config_dir}}}\n\n# Folder containing extra libraries required for hive compilation/execution can be controlled by:\nif [ \"${HIVE_AUX_JARS_PATH}\" != \"\" ]; then\n  if [ -f \"${HIVE_AUX_JARS_PATH}\" ]; then\n    export HIVE_AUX_JARS_PATH=${HIVE_AUX_JARS_PATH}\n  elif [ -d \"/usr/hdp/current/hive-webhcat/share/hcatalog\" ]; then\n    export HIVE_AUX_JARS_PATH=/usr/hdp/current/hive-webhcat/share/hcatalog/hive-hcatalog-core.jar\n  fi\nelif [ -d \"/usr/hdp/current/hive-webhcat/share/hcatalog\" ]; then\n  export HIVE_AUX_JARS_PATH=/usr/hdp/current/hive-webhcat/share/hcatalog/hive-hcatalog-core.jar\nfi\n\nexport METASTORE_PORT={{hive_metastore_port}}\n\n{% if sqla_db_used or lib_dir_available %}\nexport LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH:{{jdbc_libs_dir}}\"\nexport JAVA_LIBRARY_PATH=\"$JAVA_LIBRARY_PATH:{{jdbc_libs_dir}}\"\n{% endif %}",
                     "hive_timeline_logging_enabled": "false",
                     "beeline_jdbc_url_default": "container",
                     "hive.atlas.hook": "false",
-                    "hive.heapsize": "4444",
+                    "hive.heapsize": "1536",
                     "hive.log.level": "INFO",
                     "hive_database_name": "hive",
                     "hive_database_type": "mysql",

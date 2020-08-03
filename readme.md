@@ -26,7 +26,7 @@ Check that your system meets the following requirements:
 
  * Mac OS X 10.14
  * 16GB RAM
- * 6 CPU cores
+ * 6 physical CPU cores (12 logical  cores)
  * 100GB disk
 
 

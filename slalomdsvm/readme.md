@@ -54,7 +54,7 @@ vagrant global-status
 
  1. Open you web browser at [http://slalomdsvm:8080/](http://slalomdsvm:8080/)
  2. Login with: `admin`:`admin`
- 3. Click on the `...` near `Services`, then `Start all`. (If `Start all` is grey out, wait 1 minute, then reload the page and retry. This can happen if the VM was just started while Ambari services are still initializing).
+ 3. Click on the `...` near `Services`, then `Start all`. (If `Start all` is grey out, wait 1 minute, then reload the page and retry. This can happen if the VM was just started while Ambari services are still initializing. If the issue persists, ssh into the VM and restart Ambari services, see below for details).
  4. Wait for all services to be started, this will take 5-6 minutes (you can see the operation progres in the pop up with the progress bars).
 
 ![ambari-startall](./ambari-startall.png)
@@ -74,6 +74,12 @@ vagrant global-status
  * Python 3.6 and pip (`python3` and `pip3`), Java 8
 
 
+### Pre-installed data
+
+A dataset containing observations of the earth's surface temperature since 1743 is pre-installed on the VM. Locations:
+
+ * On HDFS as CSV files: `/user/vagrant/data/earth-surface-temperature/csv`
+ * One Hive table: `examples.gt_city`
 
 ### Accessing Notebooks and other services
 
@@ -102,7 +108,7 @@ vagrant global-status
   
 3.  Open Jupyter in you web browser at [http://slalomdsvm:8888/](http://slalomdsvm:8888/).
 
-4.  Open an existing Python3 notebook or create a new one (click `New` > `Python3`).
+4.  Open the example notebook located on the VM at `/home/vagrant/examples/pyspark.ipynb` or create a new one (click `New` > `Python3`).
 
 5. Edit your notebook, to use pyspark, use this code in your notebook:
 
@@ -132,6 +138,43 @@ vagrant global-status
 7. Use CTRL-C to shutdown the notebook server when you are done.
 
 
+### Using Hive
+
+Hive is tabular datastore built to work on top of Hadoop. It is made to run "long" SQL queries on very large datasets. It is not made to support "fast" queries with high concurrency (typically used in webapps).
+
+To use Hive:
+
+ 1. Ssh into the VM:
+
+ ```bash
+ ssh vagrant
+ ```
+ 
+ 2. Launch Hive:
+
+ ```bash
+ hive
+ ```
+ 
+ ```sql
+ # Example:
+ use examples;
+ select * from gt_city limit 10;
+ +-------------+-----------------------------+----------------------------------------+---------------+------------------+-------------------+--------------------+
+| gt_city.dt  | gt_city.averagetemperature  | gt_city.averagetemperatureuncertainty  | gt_city.city  | gt_city.country  | gt_city.latitude  | gt_city.longitude  |
++-------------+-----------------------------+----------------------------------------+---------------+------------------+-------------------+--------------------+
+| 1849-01-01  | 26.70                       | 1.435                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-02-01  | 27.43                       | 1.362                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-03-01  | 28.10                       | 1.612                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-04-01  | 26.14                       | 1.387                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-05-01  | 25.43                       | 1.200                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-06-01  | 24.84                       | 1.402                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-07-01  | 24.06                       | 1.254                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-08-01  | 23.58                       | 1.265                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-09-01  | 23.66                       | 1.226                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
+| 1849-10-01  | 25.26                       | 1.175                                  | Abidjan       | Côte D'Ivoire    | 5.63N             | 3.23W              |
++-------------+-----------------------------+----------------------------------------+---------------+------------------+-------------------+--------------------+
+ ```
 
 
 ### Managing the VM

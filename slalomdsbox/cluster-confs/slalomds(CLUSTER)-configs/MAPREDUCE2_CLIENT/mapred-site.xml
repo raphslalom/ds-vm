@@ -237,7 +237,7 @@
     
     <property>
       <name>mapreduce.task.io.sort.mb</name>
-      <value>1146</value>
+      <value>1024</value>
     </property>
     
     <property>
@@ -252,7 +252,7 @@
     
     <property>
       <name>yarn.app.mapreduce.am.command-opts</name>
-      <value>-Xmx1638m -Dhdp.version=${hdp.version}</value>
+      <value>-Xmx819m -Dhdp.version=${hdp.version}</value>
     </property>
     
     <property>
@@ -262,7 +262,7 @@
     
     <property>
       <name>yarn.app.mapreduce.am.resource.mb</name>
-      <value>2048</value>
+      <value>1024</value>
     </property>
     
     <property>
