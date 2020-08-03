@@ -1,4 +1,4 @@
-# Slalom Data Science Virtual Machine
+# Documentation for Data Science VM Users
 
 _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@slalom.com?subject=[Data%20Science%20VM])._
 
