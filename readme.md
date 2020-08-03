@@ -9,13 +9,13 @@ _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@sla
 
 This repository provides instructions to:
 
- * Provision a data science VM from an existing `slalomds` box (you are a _user_ ).
- * Create a new box from scratch (you are a _developer_).
+ * Provision a data science VM from an existing `slalomds` box (you are a _VM user_ ).
+ * Create a new box from scratch (you are a _box developer_).
 
-_Users_ and _developers_ must complete all the common pre-requisites listed below and then follow an additional set instructions provided:
+_VM users_ and _box developers_ must complete all the common pre-requisites listed below and then follow an additional set instructions provided:
 
-  * In the `slalomdsvm` directory if you are a _user_.
-  * In the `slalomdsbox` directory if you are a box _developer_.
+  * In the `slalomdsvm` directory if you are a _VM  user_.
+  * In the `slalomdsbox` directory if you are a box _box developer_.
 
 
 
@@ -27,7 +27,7 @@ Check that your system meets the following requirements:
  * Mac OS X 10.14
  * 16GB RAM
  * 6 physical CPU cores (12 logical  cores)
- * 100GB disk
+ * 60GB disk
 
 
 ### Install `brew`
