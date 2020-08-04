@@ -12,12 +12,25 @@ _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@sla
 
 Execute all the pre-requisites documented in `../readme.md`.
 
+### Download the base box
+
+Using a web browser, download the base box from
+[https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download](https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download) and copy it to `/vagrant/boxes`. 
+
+The file is ≈10GB, this will take a few hours. Make sure your laptop is plugged in and configured to not hibernate when "inactive".
+
 
 ### Register the `slalomds` box  with vagrant
 
 > Do this step only once when you you create the VM for the first time.
 
+```bash
+vagrant box list
+vagrant box add --name slalomds /vagrant/boxes/slalomds.box
+vagrant box list
+```
 
+<!--
 ```bash
 # [users and developers]
 vagrant box list
@@ -31,15 +44,17 @@ vagrant box list
 # Do this overnight, the box is ≈10GB, this will take a while.
 # IMPORTANT: 
 # Make sure your laptop is plugged-in and configured to not go to sleep.
-vagrant box add --name slalomds http://...TBD...
+# vagrant box add --name slalomds http://...TBD...
+
 
 # [developers only]
 # Register the box with vagrant if you already it .box file on your laptop 
-# vagrant box add --name slalomds /vagrant/boxes/slalomds.box
+vagrant box add --name slalomds /vagrant/boxes/slalomds.box
 
 # [users and developers]
 vagrant box list
 ```
+-->
 
 ### Create the VM
 
