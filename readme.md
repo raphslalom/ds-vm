@@ -12,15 +12,17 @@ This repository provides instructions to:
  * Provision a data science VM from an existing `slalomds` box (you are a _VM user_ ).
  * Create a new box from scratch (you are a _box developer_).
 
-_VM users_ and _box developers_ must complete all the common pre-requisites listed below and then follow an additional set instructions provided:
 
-  * In the `slalomdsvm` directory if you are a _VM  user_.
-  * In the `slalomdsbox` directory if you are a box _box developer_.
+See below for next steps:
 
+ * Everyone must complete the Pre-requisites
+ * Then go to the readme in the correct directory to find additional instructions depending on your profile.
 
 
 
 ## Pre-requisites
+
+
 ### System requirements
 Check that your system meets the following requirements:
 
@@ -105,3 +107,11 @@ mkdir repositories
 cd repositories
 git clone https://github.com/raphslalom/ds-vm
 ```
+
+
+## Next steps / further instructions
+
+Follow an additional set instructions provided:
+
+  * In the [`./slalomdsvm`](./slalomdsvm) directory if you are a _VM  user_.
+  * In the [`./slalomdsbox`](./slalomdsbox) directory if you are a _box developer_.
