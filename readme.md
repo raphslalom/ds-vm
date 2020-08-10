@@ -113,5 +113,5 @@ git clone https://github.com/raphslalom/ds-vm
 
 Follow an additional set instructions provided:
 
-  * In the [`./slalomdsvm`](./slalomdsvm) directory if you are a _VM  user_.
-  * In the [`./slalomdsbox`](./slalomdsbox) directory if you are a _box developer_.
+  * In the [`./slalomdsvm`](./slalomdsvm) directory if you are a _VM  user_ (ex: taking a training).
+  * In the [`./slalomdsbox`](./slalomdsbox) directory if you are a _box developer_ (ex: creating a new box).
