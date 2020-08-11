@@ -250,6 +250,23 @@ vagrant destroy   # DANGER ZONE
 Files on your laptop under `/vagrant/synchronized` and on the VM under `/synchronized` will be... synchronized ;) . These locations act as a "tunnel" to move files between the 2 hosts.
 
 
+### Installing Python packages
+
+Ssh into the VM (see related section) and install the desired packages with `pip3`:
+ 
+```bash
+sudo pip3 install package_name
+```
+
+### Installing R Libraries
+
+ 1. Start the VM.
+ 2. Open Rstudio in a web browser.
+ 3. Click `Tools` > `Install Packages`.
+ 4. Type the name of the packages to be installed in the pop up window.
+ 5. Click `Install`.
+
+
 ## Managing Hadoop / Ambari
 
 The Hadoop cluster is managed via Ambari (web UI). You will typically use Ambari to stop / start the Hadoop services as described in the `Start Hadoop` section.
