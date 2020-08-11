@@ -1,0 +1,35 @@
+Vagrant.configure("2") do |config|
+
+	# Define the base box to use
+	# Use a box registered in the vagrant catalog
+	config.vm.box = "slalomds"
+
+	# Skip vagrant add box and add box from file directly
+	#config.vm.box_url = "file:////vagrant/boxes/slalomds.box"
+
+	# Skip vagrant add box and add box from url directly
+	#config.vm.box_url = "https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-Vagrant-8.2.2004-20200611.2.x86_64.vagrant-virtualbox.box"
+	
+
+	# Sync local home dir to /vagrant on the VM
+	config.vm.synced_folder ".", "/vagrant", disabled: true
+	config.vm.synced_folder "c:/vagrant/synchronized", "/synchronized"
+
+	# Disk size
+	#config.disksize.size = "50GB"
+
+	# Define VM:
+	config.vm.define "slalomdsvm" do |slalomdsvm|
+	
+		# Do not change the ssh key 
+		# Makes it easier to package and share the box
+		slalomdsvm.ssh.insert_key = false
+
+		slalomdsvm.vm.network "private_network", ip: "192.168.33.10"
+		slalomdsvm.vm.provider "virtualbox" do |vb|
+			vb.name = "slalomdsvm"
+			vb.cpus = 6
+			vb.memory = 10660
+		end
+	end
+end

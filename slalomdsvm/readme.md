@@ -15,7 +15,7 @@ Execute all the pre-requisites documented in `../readme.md`.
 ### Download the base box
 
 Using a web browser, download the base box from
-[https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download](https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download) and copy it to `/vagrant/boxes`. 
+[https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download](https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download) and copy it to `/vagrant/boxes` (Mac OS X) or `c:/vagrant/boxes` (Windows). 
 
 The file is ≈10GB, this will take a few hours. Make sure your laptop is plugged in and configured to not hibernate when "inactive".
 
@@ -62,8 +62,17 @@ vagrant box list
 
 This will create the VM from the box image previously downloaded.
 
+
 ```bash
 cd ~/repositories/ds-vm/slalomdsvm
+
+# Mac OS X only
+cp VagrantfileMacOsX Vagrantfile
+
+# Windows only
+cp VagrantfileWindows Vagrantfile
+
+# Mac Os X and Windows
 vagrant up
 vagrant global-status
 ```

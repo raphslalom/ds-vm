@@ -19,6 +19,9 @@ See below for next steps:
  * Then go to the readme in the correct directory to find additional instructions depending on your profile.
 
 
+On Windows, use Git Bash to execute the commands, use any terminal on Mac OS X.
+
+
 
 ## Pre-requisites
 
@@ -26,13 +29,14 @@ See below for next steps:
 ### System requirements
 Check that your system meets the following requirements:
 
- * Mac OS X 10.14
+ * Mac OS X 10.14 or Windows 10
  * 16GB RAM
  * 6 physical CPU cores (12 logical  cores)
  * 60GB disk
 
 
-### Install `brew`
+
+### Install `brew` (Mac OS X only)
 
 Check that Brew is installed, if not install it, see: [https://brew.sh](https://brew.sh).
 
@@ -45,6 +49,8 @@ brew -v
 
 ### Install `git`
 
+Mac OS X:
+
 ```bash
 brew install git
 
@@ -52,11 +58,18 @@ git --version
 #git version 2.20.1 (Apple Git-117)
 ```
 
+Windows:
+
+Installl git from [https://gitforwindows.org](https://gitforwindows.org).
+This will also provide a Unix-like terminal called Git-Bash.
+
 
 
 ### Install Virtual Box
 
- 1. Download the VB installer from this direct link: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg), (home page: [https://www.virtualbox.org/wiki/Download](https://www.virtualbox.org/wiki/Download)).
+ 1. Download the VB installer from one of these direct links (or the downloads page: (home page: [https://www.virtualbox.org/wiki/Download](https://www.virtualbox.org/wiki/Download)): 
+   2. Mac OS X: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg),
+   3. Windows: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-Win.exe](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-Win.exe)
  1. Double click on the dmg file.
  2. Double click on the installer.
  3. When prompted, go  to system preferences and allow the Oracle installer to proceed.
@@ -79,11 +92,24 @@ vagrant plugin install vagrant-disksize
 
 ### Create the `vagrant` directory
 
+Mac OS X:
+
 ```bash
 cd /
+```
+
+Windows:
+
+```bash
+cd c:\
+```
+
+Mac OS X and Windows:
+
+```bash
 sudo mkdir vagrant
 sudo chown $(whoami) vagrant
-cd /vagrant
+cd vagrant
 
 # Where the .box file will be stored
 mkdir boxes
@@ -92,11 +118,25 @@ mkdir boxes
 mkdir synchronized
 ```
 
+
+
 ### Add VM hostname DNS entry
+
+Mac OS X:
 
 ```
 sudo echo "192.168.33.10 slalomdsvm" > /etc/hosts
 ```
+
+
+Windows:
+
+```
+sudo echo "192.168.33.10 slalomdsvm" > c:\Windows\System32\Drivers\etc\hosts
+```
+
+
+
 
 
 ### Clone this repo
