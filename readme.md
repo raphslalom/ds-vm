@@ -13,10 +13,10 @@ This repository provides instructions to:
  * Create a new box from scratch (you are a _box developer_).
 
 
-See below for next steps:
+Instructions:
 
- * Everyone must complete the Pre-requisites
- * Then go to the readme in the correct directory to find additional instructions depending on your profile.
+ 1. Everyone must complete the steps in the **Pre-requisites** section
+ 2. Follow an additional set of instructions for *VM users* or *box developers*,  links are provided in the section **Next steps / further instructions**.
 
 
 On Windows, use Git Bash to execute the commands, use any terminal on Mac OS X.
