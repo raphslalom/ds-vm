@@ -68,8 +68,8 @@ This will also provide a Unix-like terminal called Git-Bash.
 ### Install Virtual Box
 
  1. Download the VB installer from one of these direct links (or the downloads page: (home page: [https://www.virtualbox.org/wiki/Download](https://www.virtualbox.org/wiki/Download)): 
-   2. Mac OS X: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg),
-   3. Windows: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-Win.exe](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-Win.exe)
+    * Mac OS X: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg),
+    * Windows: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-Win.exe](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-Win.exe)
  1. Double click on the dmg file.
  2. Double click on the installer.
  3. When prompted, go  to system preferences and allow the Oracle installer to proceed.
