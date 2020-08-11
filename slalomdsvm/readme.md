@@ -14,8 +14,9 @@ Execute all the pre-requisites documented in `../readme.md`.
 
 ### Download the base box
 
-Using a web browser, download the base box from
-[https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download](https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download) and copy it to `/vagrant/boxes` (Mac OS X) or `c:/vagrant/boxes` (Windows). 
+ 1. Using a web browser, download the base box from
+[https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download](https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download)
+ 2. Move the `.box` file to `/vagrant/boxes` (Mac OS X) or `c:/vagrant/boxes` (Windows). 
 
 The file is ≈10GB, this will take a few hours. Make sure your laptop is plugged in and configured to not hibernate when "inactive".
 
