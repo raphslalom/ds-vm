@@ -264,7 +264,7 @@ vagrant destroy   # DANGER ZONE
 
 ### Sharing files between your laptop and the virtual machine
 
-Files on your laptop under `/vagrant/synchronized` and on the VM under `/synchronized` will be... synchronized ;) . These locations act as a "tunnel" to move files between the 2 hosts.
+Files on your laptop under `/Users/Shared/vagrant/synchronized` (Max OS X) or `/vagrant/synchronized` (Windows) will be automatically synchronized in the directory `/synchronized` on the VM. These locations act as a "tunnel" to move files between the 2 hosts.
 
 
 ### Installing Python packages

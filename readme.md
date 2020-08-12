@@ -93,29 +93,23 @@ vagrant plugin install vagrant-disksize
 Mac OS X:
 
 ```bash
-cd /
-sudo mkdir vagrant
-sudo chown $(whoami) vagrant
-cd vagrant
-
-# Where the .box file will be stored
-mkdir boxes
-
-# To sync local to the vm
-mkdir synchronized
+cd /Users/Shared
 ```
-
 
 Windows:
 
 ```bash
 cd /c
-mkdir vagrant
-cd vagrant
-mdkir boxes
-mkdir synchronized
 ```
 
+Mac OS X and Windows:
+
+```bash
+mkdir vagrant
+cd vagrant
+mkdir boxes
+mkdir synchronized
+```
 
 
 ### Add VM hostname DNS entry
