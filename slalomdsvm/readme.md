@@ -27,7 +27,14 @@ The file is ≈10GB, this will take a few hours. Make sure your laptop is plugge
 
 ```bash
 vagrant box list
+
+# Mac OS X
 vagrant box add --name slalomds /vagrant/boxes/slalomds.box
+
+# Windows
+vagrant box add --name slalomds /c/vagrant/boxes/slalomds.box
+
+# Mac OS X and Windows
 vagrant box list
 ```
 
@@ -73,7 +80,7 @@ cp VagrantfileMacOsX Vagrantfile
 # Windows only
 cp VagrantfileWindows Vagrantfile
 
-# Mac Os X and Windows
+# Mac OS X and Windows
 vagrant up
 vagrant global-status
 ```

@@ -70,10 +70,8 @@ This will also provide a Unix-like terminal called Git-Bash.
  1. Download the VB installer from one of these direct links (or the downloads page: (home page: [https://www.virtualbox.org/wiki/Download](https://www.virtualbox.org/wiki/Download)): 
     * Mac OS X: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-OSX.dmg),
     * Windows: [https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-Win.exe](https://download.virtualbox.org/virtualbox/6.1.12/VirtualBox-6.1.12-139181-Win.exe)
- 1. Double click on the dmg file.
- 2. Double click on the installer.
- 3. When prompted, go  to system preferences and allow the Oracle installer to proceed.
- 4. Go back to the installer window, if the installation failed, run it again (step 2), it will succeed this time.
+ 2. Double-click on the installer file to install VirtualBox
+ 3. [Mac OS X only] When prompted, go  to system preferences and allow the Oracle installer to proceed. Go back to the installer window, if the installation failed, run it again (step 2), it will succeed this time.
 
 
 
@@ -96,17 +94,6 @@ Mac OS X:
 
 ```bash
 cd /
-```
-
-Windows:
-
-```bash
-cd c:\
-```
-
-Mac OS X and Windows:
-
-```bash
 sudo mkdir vagrant
 sudo chown $(whoami) vagrant
 cd vagrant
@@ -115,6 +102,17 @@ cd vagrant
 mkdir boxes
 
 # To sync local to the vm
+mkdir synchronized
+```
+
+
+Windows:
+
+```bash
+cd /c
+mkdir vagrant
+cd vagrant
+mdkir boxes
 mkdir synchronized
 ```
 
@@ -131,11 +129,11 @@ sudo echo "192.168.33.10 slalomdsvm" > /etc/hosts
 
 Windows:
 
-```
-sudo echo "192.168.33.10 slalomdsvm" > c:\Windows\System32\Drivers\etc\hosts
-```
 
-
+1. Open notepad as administrator
+2. Open this file: `c:\Windows\System32\Drivers\etc\hosts`
+3. Add this line at the bottom `192.168.33.10	slalomdsvm`
+4. Save and exit
 
 
 
