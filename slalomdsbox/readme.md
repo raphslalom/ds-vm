@@ -39,6 +39,8 @@ passwd vagrant
 
 # set hostname
 hostnamectl set-hostname slalomdsvm
+echo '192.168.33.10    slalomdsvm' >> /etc/hosts
+echo 'HOSTNAME=slalomdsvm' >> /etc/sysconfig/network
 
 # set timezone for correct date/time
 # timedatectl list-timezones
@@ -106,7 +108,13 @@ Edit `/var/lib/ambari-server` to set the JVM size options in `AMBARI_JVM_ARGS `:
 export AMBARI_JVM_ARGS="$AMBARI_JVM_ARGS -Xms256m -Xmx512m -XX:MaxPermSize=128m ...
 ```
 
+Edit `/etc/ambari-agent/conf/ambari-agent.ini` and set the hostname of the Ambari server:
 
+```
+[server]
+#hostname=localhost
+hostname=slalomdsvm
+```
 
 ```bash
 ambari-server start
