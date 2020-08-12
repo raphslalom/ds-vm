@@ -26,7 +26,7 @@ vagrant up
 ### Configure OS and base components
 
 ```bash
-mkdir /vagrant/synchronized/yum_cache
+mkdir /Users/Shared/vagrant/synchronized/yum_cache
 vagrant ssh
 ```
 
