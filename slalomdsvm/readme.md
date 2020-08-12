@@ -4,7 +4,7 @@ _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@sla
 
 ## Big thanks
 
-Thank you to [glend@slalom.com](mailto: glend@slalom.com?subject=[Data%20Science%20VM]) and [dakota.carter@slalom.com](mailto: dakota.carter@slalom.com?subject=[Data%20Science%20VM]) for testing the VM on their systems, identifying issues I could not find on my system and helping out during the resolution.
+Thank you to [glend@slalom.com](mailto:glend@slalom.com?subject=[Data%20Science%20VM]) and [dakota.carter@slalom.com](mailto:dakota.carter@slalom.com?subject=[Data%20Science%20VM]) for testing the VM on their systems, identifying issues I could not find on my system and helping out during the resolution.
 
 
 ## Provisioning a data science VM
