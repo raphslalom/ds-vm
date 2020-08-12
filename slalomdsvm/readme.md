@@ -16,7 +16,7 @@ Execute all the pre-requisites documented in `../readme.md`.
 
  1. Using a web browser, download the base box from
 [https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download](https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download)
- 2. Move the `.box` file to `/vagrant/boxes` (Mac OS X) or `c:/vagrant/boxes` (Windows). 
+ 2. Move the `.box` file to `/Users/Shared/vagrant/boxes` (Mac OS X) or `c:/vagrant/boxes` (Windows). 
 
 The file is ≈10GB, this will take a few hours. Make sure your laptop is plugged in and configured to not hibernate when "inactive".
 
@@ -29,7 +29,7 @@ The file is ≈10GB, this will take a few hours. Make sure your laptop is plugge
 vagrant box list
 
 # Mac OS X
-vagrant box add --name slalomds /vagrant/boxes/slalomds.box
+vagrant box add --name slalomds /Users/Shared/vagrant/boxes/slalomds.box
 
 # Windows
 vagrant box add --name slalomds /c/vagrant/boxes/slalomds.box
