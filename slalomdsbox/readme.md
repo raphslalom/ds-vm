@@ -229,7 +229,7 @@ logout
 
 ```bash
 vagrant halt
-vagrant package --base slalomdsvm_snapshot --output /vagrant/boxes/slalomds.box
+vagrant package --base slalomdsvm_snapshot --output /Users/Shared/vagrant/boxes/slalomds.box
 ```
 
 Upload the box to **...TBD...**
