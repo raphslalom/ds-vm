@@ -75,6 +75,36 @@ This will also provide a Unix-like terminal called Git-Bash.
 
 
 
+### Create the `vagrant` directory
+
+Mac OS X:
+
+```bash
+mkdir /Users/Shared/vagrant
+mkdir /Users/Shared/vagrant/boxes
+mkdir /Users/Shared/vagrant/synchronized
+```
+
+Windows:
+
+ 1. Open Git-bash as administrator (Right-click on the icon -> "Run as administrator").
+ 2. Execute these commands:
+ 
+ ```bash
+ cd /c
+ mkdir vagrant
+ ```
+ 3. Close Git-bash.
+ 4. Open a new Git-bash terminal (do not run as administrator this time).
+ 5. Run these commands:
+
+ ```bash
+ mkdir /c/vagrant/boxes
+ mkdir /c/vagrant/synchronized
+ ```
+
+
+
 
 ### Install `vagrant`
  
@@ -87,29 +117,6 @@ vagrant plugin install vagrant-disksize
 ```
 
 
-
-### Create the `vagrant` directory
-
-Mac OS X:
-
-```bash
-cd /Users/Shared
-```
-
-Windows:
-
-```bash
-cd /c
-```
-
-Mac OS X and Windows:
-
-```bash
-mkdir vagrant
-cd vagrant
-mkdir boxes
-mkdir synchronized
-```
 
 
 ### Add VM hostname DNS entry
