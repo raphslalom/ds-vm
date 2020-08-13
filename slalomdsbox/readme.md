@@ -232,6 +232,6 @@ vagrant halt
 vagrant package --base slalomdsvm_snapshot --output /Users/Shared/vagrant/boxes/slalomds.box
 ```
 
-Upload the box to **...TBD...**
+Upload the box to GCP or S3 to get a static URL like [https://storage.googleapis.com/pyspark_training_data/slalomds.box](https://storage.googleapis.com/pyspark_training_data/slalomds.box).
 
 To use the VM, follow the instructions in the `slalomdsvm` directory.
