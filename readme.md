@@ -130,14 +130,14 @@ sudo echo "192.168.33.10 slalomdsvm" > /etc/hosts
 Windows:
 
 
-1. Open notepad as administrator
+1. Open Notepad (run as administrator).
 2. Open this file: `c:\Windows\System32\drivers\etc\hosts` (select "All files" to list all the files, not just `.txt` files).
 3. Add this line at the bottom:
 
    ```
    192.168.33.10	slalomdsvm
    ```
-4. Save and exit
+4. Save and exit.
 
 
 
