@@ -11,7 +11,7 @@ Thank you to [glend@slalom.com](mailto:glend@slalom.com?subject=[Data%20Science%
 
 Make sure you have completed all the pre-requisites steps documented at [`../readme.md`](../readme.md).
 
-### Download the `slalomds` bas box and register it with vagrant
+### Download the `slalomds` base box and register it with vagrant
 
 _Do this step only once when you you create the VM for the first time._
 
