@@ -52,7 +52,7 @@ _Do this step every time you create a new vm from the box (ex: if you have detro
  1. Open you web browser at [http://slalomdsvm:8080/](http://slalomdsvm:8080/)
  2. Login with: `admin`:`admin`
  3. Click on the `...` near `Services`, then `Start all`. (If `Start all` is grey out, wait 1 minute, then reload the page and retry. This can happen if the VM was just started while Ambari services are still initializing. If the issue persists, ssh into the VM and restart Ambari services, see below for details).
- 4. Wait for all services to be started, this will take 5-6 minutes (you can see the operation progres in the pop up with the progress bars).
+ 4. Wait for all services to be started, this will take 5-6 minutes (you can monitor the operation progress in the pop-up window with the progress bars).
 
 ![ambari-startall](./ambari-startall.png)
  
