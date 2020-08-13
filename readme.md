@@ -116,6 +116,18 @@ vagrant plugin install vagrant-disksize
 ```
 
 
+### Disable the default hypervisor (Windows only)
+
+1. Open Powershell (run as administrator).
+2. Run this command:
+
+ ```bash
+ bcdedit /set hypervisorlaunchtype off
+ ```
+3. Close Powershell and restart the computer.
+ 
+ To reactivate, see details at [https://stackoverflow.com/questions/37955942/vagrant-up-vboxmanage-exe-error-vt-x-is-not-available-verr-vmx-no-vmx-code](https://stackoverflow.com/questions/37955942/vagrant-up-vboxmanage-exe-error-vt-x-is-not-available-verr-vmx-no-vmx-code).
+
 
 
 ### Add VM hostname DNS entry
