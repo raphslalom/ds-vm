@@ -4,18 +4,18 @@ _Created in July 2020 by [raphael.vannson@slalom.com](mailto:raphael.vannson@sla
 
 ## Big thanks
 
-Thank you to [glend@slalom.com](mailto:glend@slalom.com?subject=[Data%20Science%20VM]) and [dakota.carter@slalom.com](mailto:dakota.carter@slalom.com?subject=[Data%20Science%20VM]) for testing the VM on their systems, identifying issues I could not find on my system and helping out during the resolution.
+Thank you to [glend@slalom.com](mailto:glend@slalom.com?subject=[Data%20Science%20VM]) and [dakota.carter@slalom.com](mailto:dakota.carter@slalom.com?subject=[Data%20Science%20VM]) for testing the VM on their systems, identifying issues I could not find on my system and helping out during resolution.
 
 
 ## Provisioning a data science VM
 
-Make sure you have completed all the pre-requisites steps documented at [`../readme.md`](../readme.md).
+Make sure you have completed all the pre-requisites documented at [`../readme.md`](../readme.md).
 
 ### Download the `slalomds` base box and register it with vagrant
 
 _Do this step only once when you you create the VM for the first time._
 
-This step will automatically download the base box. The file size is around 10GB, this will take 20 minutes on a fiber connection and a few hours on a cable/DSL connection. Make sure your laptop is plugged in and configured to not hibernate when it is inactive.
+This step will automatically download the base box. The file size is around 10GB, this will take approximately 20 minutes on a fiber connection and a few hours on a cable/DSL connection. Make sure your laptop is plugged in and configured to not hibernate when it is inactive.
 
 ```bash
 vagrant box add --name slalomds https://storage.googleapis.com/pyspark_training_data/slalomds.box
