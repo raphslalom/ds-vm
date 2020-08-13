@@ -128,7 +128,7 @@ A dataset containing observations of the earth's surface temperature since 1743 
   from pyspark.sql import SparkSession
   spark = SparkSession.builder.getOrCreate()
   spark
-  ...
+  # Your pyspark code here...
   spark.stop()
   
   # OR
@@ -136,7 +136,7 @@ A dataset containing observations of the earth's surface temperature since 1743 
   import pyspark
   sc = pyspark.SparkContext()
   sc
-  ...
+  # Your pyspark code here...
   sc.stop()
   ```
   
