@@ -27,7 +27,7 @@ On Windows, use Git Bash to execute the commands, use any terminal on Mac OS X.
 
 
 ### System requirements
-Check that your system meets the following requirements:
+Check that your system meets the following requirements -- All of these requirements are absolutely necessary.
 
  * Mac OS X 10.14 or Windows 10
  * 16GB RAM
