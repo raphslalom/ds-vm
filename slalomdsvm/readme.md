@@ -9,67 +9,23 @@ Thank you to [glend@slalom.com](mailto:glend@slalom.com?subject=[Data%20Science%
 
 ## Provisioning a data science VM
 
-### Pre-requisites
+Make sure you have completed all the pre-requisites steps documented at [`../readme.md`](../readme.md).
 
-> Do this step only once when you you create the VM for the first time.
+### Download the `slalomds` bas box and register it with vagrant
 
-Execute all the pre-requisites documented in `../readme.md`.
+_Do this step only once when you you create the VM for the first time._
 
-### Download the base box
-
- 1. Using a web browser, download the base box from
-[https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download](https://drive.google.com/uc?id=1eg0r68pWfEk4g0T8WqMgolX-t9iAzrZt&export=download)
- 2. Move the `.box` file to `/Users/Shared/vagrant/boxes` (Mac OS X) or `c:/vagrant/boxes` (Windows). 
-
-The file is ≈10GB, this will take a few hours. Make sure your laptop is plugged in and configured to not hibernate when "inactive".
-
-
-### Register the `slalomds` box  with vagrant
-
-> Do this step only once when you you create the VM for the first time.
+This step will automatically download the base box. The file size is around 10GB, this will take 20 minutes on a fiber connection and a few hours on a cable/DSL connection. Make sure your laptop is plugged in and configured to not hibernate when it is inactive.
 
 ```bash
-vagrant box list
-
-# Mac OS X
-vagrant box add --name slalomds /Users/Shared/vagrant/boxes/slalomds.box
-
-# Windows
-vagrant box add --name slalomds /c/vagrant/boxes/slalomds.box
-
-# Mac OS X and Windows
+vagrant box add --name slalomds https://storage.googleapis.com/pyspark_training_data/slalomds.box
 vagrant box list
 ```
 
-<!--
-```bash
-# [users and developers]
-vagrant box list
-
-# If needed use a new version of the box
-# WARNING: you will need to re-download the box if you do this.
-# vagrant box remove slalomds   # DANGER ZONE
-
-# [users only]
-# Download the box and register it with vagrant
-# Do this overnight, the box is ≈10GB, this will take a while.
-# IMPORTANT: 
-# Make sure your laptop is plugged-in and configured to not go to sleep.
-# vagrant box add --name slalomds http://...TBD...
-
-
-# [developers only]
-# Register the box with vagrant if you already it .box file on your laptop 
-vagrant box add --name slalomds /vagrant/boxes/slalomds.box
-
-# [users and developers]
-vagrant box list
-```
--->
 
 ### Create the VM
 
-> Do this step every time you create a new vm from the box (ex: if you have detroyed a previous instance of the VM and you need to create a new "fresh VM").
+_Do this step every time you create a new vm from the box (ex: if you have detroyed a previous instance of the VM and you need to create a new "fresh VM")._
 
 This will create the VM from the box image previously downloaded.
 
@@ -91,6 +47,8 @@ vagrant global-status
 
 ### Start Hadoop
 
+_Do this step every time you create a new vm from the box (ex: if you have detroyed a previous instance of the VM and you need to create a new "fresh VM")._
+
  1. Open you web browser at [http://slalomdsvm:8080/](http://slalomdsvm:8080/)
  2. Login with: `admin`:`admin`
  3. Click on the `...` near `Services`, then `Start all`. (If `Start all` is grey out, wait 1 minute, then reload the page and retry. This can happen if the VM was just started while Ambari services are still initializing. If the issue persists, ssh into the VM and restart Ambari services, see below for details).
@@ -99,18 +57,26 @@ vagrant global-status
 ![ambari-startall](./ambari-startall.png)
  
  
+Your data science VM is ready, see instructions below on how to use it. 
+When you are done, use this command to put the VM to sleep:
 
-## Using the VM
+```bash
+vagrant suspend
+```
+
+
+## Using the data science VM
 
 ### About the VM
 
- * Centos 7
- * 10GB RAM
- * 6 CPUs
+ * Centos 7.
+ * 10GB RAM.
+ * 6 CPUs.
  * 40GB disk (15GB already used).
- * Hadoop 3 (HDFS, YARN, Map/Reduce), Spark 2, Hive 3
- * Jupyter, Rstudio, Zeppelin, git
- * Python 3.6 and pip (`python3` and `pip3`), Java 8
+ * Hadoop 3 (HDFS, YARN, Map/Reduce), Spark 2, Hive 3.
+ * Hadoop services are managed via Ambari.
+ * Jupyter, Rstudio, Zeppelin, git.
+ * Python 3.6 and pip (`python3` and `pip3`), Java 8.
 
 
 ### Pre-installed data
@@ -118,7 +84,7 @@ vagrant global-status
 A dataset containing observations of the earth's surface temperature since 1743 is pre-installed on the VM. Locations:
 
  * On HDFS as CSV files: `/user/vagrant/data/earth-surface-temperature/csv`
- * One Hive table: `examples.gt_city`
+ * One Hive table: `examples.gt_city` (external table, based on `hdfs://user/vagrant/data/earth-surface-temperature/hive/GlobalLandTemperaturesByMajorCity`)
 
 ### Accessing Notebooks and other services
 
@@ -216,13 +182,14 @@ To use Hive:
 
 ### Managing the VM
 
-All VM managment operations must be conducted from the VM  directory (it contains the `Vagrantfile`).
+All VM managment operations must be conducted from the VM  directory (the directory  containing the `Vagrantfile`).
 
-The VM will be automatically suspended if your laptop is closed, in this case you will need to run `vagrant up` to resume the VM, see below for details.
+To `cd` into the VM directory:
 
 ```bash
-cd ~/repositories/ds-vm/slalomds
+cd ~/repositories/ds-vm/slalomdsvm
 ```
+
 
 To resume /suspend the VM (use this when you are done using the VM):
 
@@ -263,28 +230,40 @@ To destroy the VM (will delete all data on the VM, the data in the synced direct
 vagrant destroy   # DANGER ZONE
 ```
 
+Note:
+
+The VM will be automatically suspended if your laptop is closed, in this case you will need to run `vagrant up` to resume the VM, see below for details.
 
 
-### Sharing files between your laptop and the virtual machine
 
-Files on your laptop under `/Users/Shared/vagrant/synchronized` (Max OS X) or `/vagrant/synchronized` (Windows) will be automatically synchronized in the directory `/synchronized` on the VM. These locations act as a "tunnel" to move files between the 2 hosts.
+## Exchanging files between your laptop and the VM
+
+Files on your laptop under `/Users/Shared/vagrant/synchronized` (Max OS X) or `/vagrant/synchronized` (Windows) will be automatically synchronized in the directory `/synchronized` on the VM. These locations act as a tunnel allowing to move files between the 2 hosts.
 
 
-### Installing Python packages
+## Installing packages on the VM
+
+### Python packages
 
 Ssh into the VM (see related section) and install the desired packages with `pip3`:
  
 ```bash
-sudo pip3 install package_name
+sudo pip3 install xyz
 ```
 
-### Installing R Libraries
+### R Libraries
 
  1. Start the VM.
  2. Open Rstudio in a web browser.
  3. Click `Tools` > `Install Packages`.
  4. Type the name of the packages to be installed in the pop up window.
  5. Click `Install`.
+
+###  OS packages
+
+```bash
+sudo yum -y install xyz
+```
 
 
 ## Managing Hadoop / Ambari
@@ -324,5 +303,4 @@ To register the `slalomds` base box with Vagrant:
 ```bash
 # This will download the box (≈10GB)
 # Overnight download is advised
-vagrant box add --name slalomds http://...TBD...
-```
+vagrant box add --name slalomds https://storage.googleapis.com/pyspark_training_data/slalomds.box```
