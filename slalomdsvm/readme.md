@@ -108,15 +108,16 @@ A dataset containing observations of the earth's surface temperature since 1743 
 
 1. Ssh into the VM (see section `Managing the VM` below).
 
-2. To start the notebook server, run:
+2. To start Jupyter notebook server, run:
 
   ```bash
   jupyter notebook
   ```
+ Jupyter notebook server will be running in `/home/vagrant`, you will be able to access this location (on the VM) and everything in it from the Jupyter "file browser".
   
-3.  Open Jupyter in you web browser at [http://slalomdsvm:8888/](http://slalomdsvm:8888/).
+3.  Open the Jupyter UI in you web browser at [http://slalomdsvm:8888/](http://slalomdsvm:8888/).
 
-4.  Open the example notebook located on the VM at `/home/vagrant/examples/pyspark.ipynb` or create a new one (click `New` > `Python3`).
+4.  Open the example notebook located on the VM at `examples/earth_temp-slalomdsvm.ipynb` or create a new one (click `New` > `Python3`).
 
 5. Edit your notebook, to use pyspark, use this code in your notebook:
 
@@ -124,7 +125,8 @@ A dataset containing observations of the earth's surface temperature since 1743 
   import findspark
   findspark.init()
 
-  # Create a spark-session (akin to what pyspark provides when it is started)
+  # Create a spark-session
+  # (akin to what pyspark provides when it is started)
   from pyspark.sql import SparkSession
   spark = SparkSession.builder.getOrCreate()
   spark
