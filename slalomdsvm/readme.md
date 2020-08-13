@@ -113,9 +113,9 @@ A dataset containing observations of the earth's surface temperature since 1743 
   ```bash
   jupyter notebook
   ```
- Jupyter notebook server will be running in `/home/vagrant`, you will be able to access this location (on the VM) and everything in it from the Jupyter "file browser".
+ Jupyter notebook server will be running in `/home/vagrant`, you will be able to access this location (on the VM) and everything in it from the "file browser" in the Jupyter web UI.
   
-3.  Open the Jupyter UI in you web browser at [http://slalomdsvm:8888/](http://slalomdsvm:8888/).
+3.  Open the Jupyter web UI in you web browser at [http://slalomdsvm:8888/](http://slalomdsvm:8888/).
 
 4.  Open the example notebook located on the VM at `examples/earth_temp-slalomdsvm.ipynb` or create a new one (click `New` > `Python3`).
 
