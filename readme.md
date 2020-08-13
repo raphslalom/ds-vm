@@ -53,7 +53,6 @@ Mac OS X:
 
 ```bash
 brew install git
-
 git --version
 #git version 2.20.1 (Apple Git-117)
 ```
