@@ -303,4 +303,5 @@ To register the `slalomds` base box with Vagrant:
 ```bash
 # This will download the box (≈10GB)
 # Overnight download is advised
-vagrant box add --name slalomds https://storage.googleapis.com/pyspark_training_data/slalomds.box```
+vagrant box add --name slalomds https://storage.googleapis.com/pyspark_training_data/slalomds.box
+```
