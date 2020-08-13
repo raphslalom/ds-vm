@@ -118,15 +118,19 @@ vagrant plugin install vagrant-disksize
 
 ### Add VM hostname DNS entry
 
-Mac OS X:
 
-```
+No worries if you are not able to edit `/etc/hosts`, you will just have to replace `slalomdsvm` to `192.168.33.10` in the URLs you use to access the VM services via your web browser. Example to access Jupyter use `http://192.168.33.10:8888/` instead of `http://slalomdsvm:8888/`
+
+
+
+To edit the hosts file on Mac OS X:
+
+```bash
 sudo echo "192.168.33.10 slalomdsvm" > /etc/hosts
 ```
 
 
-Windows:
-
+To edit the hosts file on Windows:
 
 1. Open Notepad (run as administrator).
 2. Open this file: `c:\Windows\System32\drivers\etc\hosts` (select "All files" to list all the files, not just `.txt` files).
