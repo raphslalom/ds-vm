@@ -126,7 +126,7 @@ No worries if you are not able to edit `/etc/hosts`, you will just have to repla
 To edit the hosts file on Mac OS X:
 
 ```bash
-sudo echo "192.168.33.10 slalomdsvm" > /etc/hosts
+sudo echo "192.168.33.10 slalomdsvm" >> /etc/hosts
 ```
 
 
